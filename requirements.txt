@@ -1,0 +1,6 @@
+WTForms==2.1
+tornado==4.4.1
+wtforms-tornado==0.0.2
+greenlet==0.4.10
+motor==0.6.2
+pymongo==2.8

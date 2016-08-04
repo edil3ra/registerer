@@ -1,0 +1,24 @@
+{% from settings import TORNADO_SETTINGS %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %} {% end %}</title>
+  </head>
+  <body>
+    {% block content %} {% end %}
+    {% block scripts %}
+      {% if not TORNADO_SETTINGS['prod'] %}
+        {# you need to launch webpack,  nmp start #}
+        <script src="http://localhost:8080/static/vendor.bundle.js"></script>
+        <script src="http://localhost:8080/static/main.bundle.js"></script>
+      {% else %}
+        {# you need to build the assets with webpack, nmp run build  #}
+        <script src="/static/vendor.bundle.js"></script>
+        <script src="/static/main.bundle.js"></script>
+      {% end %}
+    {% end %}
+  </body>
+</html>
+

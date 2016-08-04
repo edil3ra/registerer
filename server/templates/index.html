@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}
+  Registerer - Home
+{% end %}
+{% block content %}
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Weclome to the registerer</h1>
+      <p>Registerer is an appliacion to register user, it was meant to test tornado framework, it is using tornado, mongo on the back and webpack, bootstrap on the front </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <form action="/" method="post">
+      <h2 class="form-signin-heading">Please Sign in</h2>
+      <hr/>
+      <div class="form-group {% if 'email' in form_errors or user_exist %}has-warning{% end %}">
+        <label for="email">email: </label>
+        <input name="email" class="form-control" type="email"
+               value="{{request.arguments.get('email')[0].decode() if 'email' in request.arguments and 'email' not in form_errors and not user_exist else ''}}" />
+               
+               {% if user_exist %}
+                 <div class="form-control-feedback">
+                   The addres mail {{request.arguments.get('email')[0].decode()}} is already taken
+                 </div>
+               {% end %}
+
+               
+        {% for error in form_errors.get('email') if form_errors.get('email') is not None else [] %}
+          <div class="form-control-feedback">
+            {{ error }}
+          </div>
+        {% end %}
+      </div>
+      <div class="form-group {% if 'username' in form_errors %}has-warning{% end %}">
+        <label for="username">username: </label>
+        <input name="username" class="form-control" type="text"
+               value="{{request.arguments.get('username')[0].decode() if 'username' in request.arguments and 'username' not in form_errors else ""}}"/>
+        
+        {% for error in form_errors.get('username') if form_errors.get('username') is not None else [] %}
+          <div class="form-control-feedback">
+            {{ error }}
+          </div>
+        {% end %}
+      </div>
+      <div class="form-group {% if 'password' in form_errors %}has-warning{% end %}">
+        <label for="password">password: </label>
+        <input name="password" class="form-control" type="password"
+               value="{{request.arguments.get('password')[0].decode() if 'password' in request.arguments and 'password' not in form_errors else ""}}"/>
+               
+        {% for error in form_errors.get('password') if form_errors.get('password') is not None else [] %}
+          <div class="form-control-feedback">
+            {{ error }}
+          </div>
+        {% end %}
+      </div>
+      <div class="form-group {% if 'password2' in form_errors %}has-warning{% end %}">
+        <label for="password2">Enter your password again: </label>
+        <input name="password2" class="form-control" type="password"
+               value="{{request.arguments.get('password2')[0].decode() if 'password2' in request.arguments and 'password2' not in form_errors else ""}}"/>
+        
+        {% for error in form_errors.get('password2') if form_errors.get('password2') is not None else [] %}
+          <div class="form-control-feedback">
+            {{ error }}
+          </div>
+        {% end %}
+      </div>
+      <input class="btn btn-primary" type="submit" value="Register"/>
+    </form>
+  </div>
+  
+{% end %}

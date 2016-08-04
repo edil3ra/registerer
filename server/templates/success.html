@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+  Registerer - Success
+{% end %}
+
+{% block content %}
+  <div class="jumbotron">
+    <div class="container">
+      <h2>You successfully register</h2>
+      <p><a class="btn btn-lg btn-success" href="/" role="button">Back to sign up</a></p>
+    </div>
+  </div>
+  <div class="container">
+    <h2>User list</h2>
+  {% for index, user in enumerate(users) %}
+      <ul class="list-group">
+        <li class="list-group-item">email: {{user['email']}}</li> 
+        <li class="list-group-item">user: {{user['username']}}</li> 
+        <li class="list-group-item">password: {{user['password']}}</li> 
+      </ul>
+      {% if index != len(users) - 1 %}
+        <hr/>
+      {% end %}
+    {% end %}
+  </div>
+
+{% end %}
