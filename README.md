@@ -34,14 +34,15 @@ Launch
 ------------
 
 Dev
-
+    
     $ npm start
     $ mongod
     $ cd server
     $ python app.py
     
 Prod
-
+    make sure the app is in production (check the settings.py file)
+    
     $ npm run build
     $ mongod
     $ cd server
